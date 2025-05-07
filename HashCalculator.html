@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hash-input {
+            display: flex
+        }
+        .hash-input input {
+            flex-grow: 1;
+            padding: 10px;
+        }
+        .hash-result {
+            word-break: break-all;
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hash Calculator</h1>
+    <div class="hash-input">
+        <input id="hashInput" placeholder="Enter text to hash..." oninput="calculateHashes()" />
+    </div>
+    <h3>MD5:</h3>
+    <p id="md5Result" class="hash-result"></p>
+    <h3>SHA1:</h3>
+    <p id="sha1Result" class="hash-result"></p>
+    <script>
+        function calculateHashes() {
+            const text = document.getElementById('hashInput').value;
+            const md5Hash = CryptoJS.MD5(text).toString();
+            document.getElementById('md5Result').textContent = md5Hash;
+            const sha1Hash = CryptoJS.SHA1(text).toString();
+            document.getElementById('sha1Result').textContent = sha1Hash;
+        }
+        calculateHashes()
+    </script>
+</body>
+</html>
